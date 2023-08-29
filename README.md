@@ -26,7 +26,7 @@ To develop with Docker inside Visual Studio Code, you can consult the Visual Stu
     }
     ```
 
-7. Now, open the Visual Studio Code [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and search for and select the command "Remote-Containers: Reopen in Container". This command will open Visual Studio Code inside a container made using the `colmduff/python_poetry_vscode` Docker image. After Visual Studio Code finishes opening in the container, test that you have access to the three pre-installed pieces of packaging software we need by opening the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) and trying the following commands:
+7. Now, open the Visual Studio Code [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and search for and select the command "Remote-Containers: Reopen in Container". This command will open Visual Studio Code inside a container made using the `colmduff/python_poetry_vscode` Docker image. After Visual Studio Code finishes opening in the container, test that you have access to the two pre-installed pieces of packaging software we need by opening the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) and trying the following commands:
 
     ```{prompt} bash \$ auto
     $ poetry --version
