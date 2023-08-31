@@ -8,12 +8,6 @@ RUN apt update -y && \
   make \
   curl
 
-# Create a non-root user named "vscode" with UID and GID set to 1000
-RUN useradd -ms /bin/bash -u 1000 -U vscode
-
-# Set the user to "vscode" for subsequent commands
-USER vscode
-
 # Install Python packages with pip, they will be installed in the user's home directory
 RUN pip install --user cookiecutter
 
@@ -21,5 +15,5 @@ RUN pip install --user cookiecutter
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Add the user's local bin directory to the PATH
-ENV PATH="/home/vscode/.local/bin:${PATH}"
+ENV PATH="/home/root/.local/bin:${PATH}"
 
