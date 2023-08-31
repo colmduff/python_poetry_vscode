@@ -1,13 +1,12 @@
 FROM python:3.9.13
 
-ARG USERNAME=vscode
-ARG USER_UID=1000
-ARG USER_GID=1000
+# Create a non-root user named "vscode" with UID and GID set to 1000
+RUN useradd -ms /bin/bash -u 1000 -U vscode
 
-RUN groupmod --gid $USER_GID $USERNAME \
-    && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
-    && chown -R $USER_UID:$USER_GID /home/$USERNAME
+# Set the user to "vscode" for subsequent commands
+USER vscode
 
+# Update package lists and install required packages
 RUN apt update -y && \
   apt upgrade -y && \
   apt install -y --no-install-recommends \
@@ -15,8 +14,12 @@ RUN apt update -y && \
   make \
   curl
 
-RUN pip install cookiecutter
+# Install Python packages with pip, they will be installed in the user's home directory
+RUN pip install --user cookiecutter
 
+# Install Poetry
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
-ENV PATH="$HOME/vscode/.local/bin:${PATH}"
+# Add the user's local bin directory to the PATH
+ENV PATH="/home/vscode/.local/bin:${PATH}"
+
